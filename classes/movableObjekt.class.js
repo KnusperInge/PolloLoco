@@ -1,4 +1,4 @@
-class MovableObjekt {
+class MovableObjekt extends DrawableObject {
     speedY = 0;
     acceleration = 2.5; //Fallgeschwindigkeit
     ohterDirection = false;
@@ -26,19 +26,7 @@ class MovableObjekt {
     }
 
 
-    loadImage(path) {
-        this.img = new Image(); //<img></img>
-        this.img.src = path;
-    }
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
+ 
     draw(ctx) {
         ctx.drawImage(this.img, this.position_X, this.position_Y, this.width, this.height);
     }
@@ -71,12 +59,7 @@ class MovableObjekt {
         this.position_X -= this.speed;
     }
 
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
+
 
     jump() {
         this.speedY = 30;

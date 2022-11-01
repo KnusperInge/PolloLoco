@@ -39,7 +39,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-
+        //this.addToMap(character.Statusbar);
         this.ctx.translate(-this.camera_X, 0);
         //draw() wird immer wieder aufgerufen
         let self = this;
