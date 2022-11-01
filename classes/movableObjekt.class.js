@@ -9,6 +9,7 @@ class MovableObjekt {
     width;
     img;
     currentImage = 0;
+    health=100;
     imageCache = {};
 
     applyGravity() {
@@ -42,12 +43,24 @@ class MovableObjekt {
     }
 
     drawFrame(ctx){
+        if( this instanceof Charakter || this instanceof Chicken){
+        
         ctx.beginPath();
         ctx.lineWidth='5';
         ctx.strokeStyle='blue';
         ctx.rect(this.position_X,this.position_Y,this.width,this.height);
         ctx.stroke();
     }
+    }
+
+    // z.b. charakter.isColiding(chicken);
+isColliding(mo){
+    return this.position_X+this.width>mo.position_X &&
+    this.position_Y + this.height > mo.position_Y &&
+    this.position_X< mo.position_X &&
+    this.position_Y <mo.position_Y+mo.height
+}
+
 
     moveRight() {
         this.position_X += this.speed;

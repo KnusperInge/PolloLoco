@@ -1,6 +1,6 @@
 class World {
     character = new Charakter();
-   level=level1;
+    level = level1;
 
 
     ctx;
@@ -13,10 +13,22 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisons();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollisons(){
+        setInterval(()=>{
+            this.level.enemies.forEach((enemy)=>{
+               if(this.character.isColliding(enemy)){
+              this.character.hit();
+                console.log('health char',this.character.health);
+               } 
+            })
+        },200);
     }
 
     draw() {
@@ -46,27 +58,27 @@ class World {
 
     addToMap(mo) {
         if (mo.ohterDirection) {
-           this.flipImage(mo);
+            this.flipImage(mo);
         }
         mo.draw(this.ctx);
-       
-       mo.drawFrame(this.ctx);
-       
-        if (mo.ohterDirection) {
-          flipImageBack(mo);
 
+        mo.drawFrame(this.ctx);
+
+        if (mo.ohterDirection) {
+           this.flipImageBack(mo);
+
+        }
     }
-    }
-    flipImage(mo){
+    flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.position_X = mo.position_X * -1;
     }
 
-    flipImageBack(mo){
+    flipImageBack(mo) {
         mo.position_X = mo.position_X * -1;
         this.ctx.restore();
     }
-    
+
 }
