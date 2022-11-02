@@ -3,15 +3,8 @@ class MovableObjekt extends DrawableObject {
     acceleration = 2.5; //Fallgeschwindigkeit
     ohterDirection = false;
     speed = 0.15;
-    position_X = 120;
-    position_Y = 180;
-    height;
-    width;
-    img;
-    currentImage = 0;
-    health = 100;
-    lastHit=0;
-    imageCache = {};
+   lastHit=0;
+
 
     applyGravity() {
         setInterval(() => {
@@ -27,20 +20,8 @@ class MovableObjekt extends DrawableObject {
 
 
  
-    draw(ctx) {
-        ctx.drawImage(this.img, this.position_X, this.position_Y, this.width, this.height);
-    }
+    
 
-    drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken) {
-
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.position_X, this.position_Y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
 
     // z.b. charakter.isColiding(chicken);
     isColliding(mo) {
