@@ -6,7 +6,7 @@ class World {
     keyboard;
     camera_X = 0;
     healthBar= new Healthbar();
-   coinsBar= new CoinsBar();
+  coinsBar= new CoinsBar();
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -23,14 +23,30 @@ class World {
 
     checkCollisons(){
         setInterval(()=>{
-            this.level.enemies.forEach((enemy)=>{
-               if(this.character.isColliding(enemy)){
-              this.character.hit();
-             this.healthBar.setPercentage(this.character.health);
-               } 
-            })
+            this.collEnemy();
+            this.collCoin();
         },200);
     }
+
+
+collEnemy(){
+    this.level.enemies.forEach((enemy)=>{
+        if(this.character.isColliding(enemy)){
+       this.character.hit();
+      this.healthBar.setPercentage(this.character.health);
+        } 
+     })
+}
+
+collCoin(){
+    this.level.coins.forEach((coin)=>{
+        if(this.character.isColliding(coin)){
+       this.character.collect();
+       
+      this.coinsBar.setPercentage(this.character.coins);
+        } 
+     })
+}
 
     draw() {
         //Canvas leeren
@@ -42,9 +58,11 @@ class World {
        //--------- Space for Fixed Elements--------------
         this.addToMap(this.healthBar);
        this.addToMap(this.coinsBar);
-        this.ctx.translate(this.camera_X, 0);
+     
+       this.ctx.translate(this.camera_X, 0);
         
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
         this.addToMap(this.character);
         
         this.addObjectsToMap(this.level.enemies);

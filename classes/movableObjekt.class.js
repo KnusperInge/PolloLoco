@@ -56,6 +56,7 @@ class MovableObjekt extends DrawableObject {
             this.lastHit= new Date().getTime();
         }
     }
+
     isHurt(){
         let timepassed = new Date().getTime()-this.lastHit;
         timepassed=timepassed/1000; //Differenz in Sek
@@ -64,5 +65,9 @@ class MovableObjekt extends DrawableObject {
 
     isDead(){
         return this.health==0;
+    }
+    collect(){
+        this.coins+=1;
+        
     }
 }

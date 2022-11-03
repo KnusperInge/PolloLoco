@@ -7,6 +7,7 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
     health = 100;
+    coins=0;
 
 
 
@@ -15,7 +16,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken) {
+        if (this instanceof Charakter || this instanceof Chicken || this instanceof Coins) {
 
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -47,27 +48,7 @@ class DrawableObject {
     }
 
     
-    // z.b setPercentage(50)
-    setPercentage(percentage,IMAGES) {
-        this.percentage = percentage; //Zahl zwischen 0...5 ermitteln
-       let imagePath=IMAGES[this.resolveImageIndex()];
-       this.img = this.imageCache[imagePath];
-    }
-    
-    resolveImageIndex() {
-        if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3;
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+  
+   
 
 }
