@@ -8,7 +8,9 @@ class DrawableObject {
     currentImage = 0;
     health = 100;
     coins=0;
-
+    collectedBottles=0;
+    loadedBottles=0;
+  
 
 
     draw(ctx) {
@@ -16,7 +18,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken || this instanceof Coins) {
+        if (this instanceof Charakter || this instanceof Chicken || this instanceof bottle) {
 
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -46,6 +48,19 @@ class DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+    collectCoin(){
+        this.coins+=1;
+       
+        
+    }
+    collectBottle(){
+       this.collectedBottles+=1;
+        
+    }
+    delete(){
+        this.position_Y=500;
+    }
+    
 
     
   

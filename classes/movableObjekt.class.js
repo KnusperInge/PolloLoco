@@ -15,7 +15,12 @@ class MovableObjekt extends DrawableObject {
         }, 1000 / 25);
     }
     isAboveGround() {
+       if(this instanceof throwableObject){
+        return true;
+       }else{
         return this.position_Y < 180;
+       }
+        
     }
 
 
@@ -66,8 +71,5 @@ class MovableObjekt extends DrawableObject {
     isDead(){
         return this.health==0;
     }
-    collect(){
-        this.coins+=1;
-        
-    }
+   
 }
