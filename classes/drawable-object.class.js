@@ -7,10 +7,11 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
     health = 100;
-    coins=0;
-    collectedBottles=0;
-    loadedBottles=0;
-  
+    coins = 0;
+    collectedBottles = 0;
+    loadedBottles = 0;
+    damage=0;
+
 
 
     draw(ctx) {
@@ -18,7 +19,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken || this instanceof bottle) {
+        if (this instanceof Charakter || this instanceof Chicken || this instanceof throwableObject) {
 
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -48,22 +49,30 @@ class DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-    collectCoin(){
-        this.coins+=1;
-       
-        
-    }
-    collectBottle(){
-       this.collectedBottles+=1;
-        
-    }
-    delete(){
-        this.position_Y=500;
-    }
-    
 
-    
-  
-   
+   // z.b. charakter.isColiding(chicken);
+   isColliding(mo) {
+    return this.position_X + this.width > mo.position_X &&
+        this.position_Y + this.height > mo.position_Y &&
+        this.position_X < mo.position_X &&
+        this.position_Y < mo.position_Y + mo.height
+}
+
+    collectCoin() {
+        this.coins += 1;
+    }
+
+    collectBottle() {
+        this.collectedBottles += 1;
+    }
+
+    delete() {
+        this.position_Y = 500;
+    }
+
+
+
+
+
 
 }

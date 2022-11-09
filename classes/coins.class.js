@@ -11,8 +11,5 @@ this.position_Y=y;
 }
 
 
-delete(){
-    this.position_Y=500;
-}
 
  }

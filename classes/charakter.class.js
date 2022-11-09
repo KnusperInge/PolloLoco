@@ -5,7 +5,7 @@ class Charakter extends MovableObjekt {
     position_Y = 80;
     world;
     walking_sound = new Audio('audio/walking.mp3');
-
+    damage=10;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -76,9 +76,10 @@ class Charakter extends MovableObjekt {
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
         }
-
+        console.log('Ende');
         this.world.camera_X = -this.position_X + 100;
     }
+
     animChar() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);

@@ -12,14 +12,14 @@ image;
        
     ];
 
-    constructor() {
+    constructor(x,y) {
         super();
         this.loadImages(this.IMAGES_HEALTHBAR);
        
         this.setPercentage(100);
 
-       this.position_X=20;
-        this.position_Y=0;
+       this.position_X=x;
+        this.position_Y=y;
         this.width=150;
         this.height=50;
     }

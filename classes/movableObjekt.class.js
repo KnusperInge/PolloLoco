@@ -44,6 +44,10 @@ class MovableObjekt extends DrawableObject {
     moveLeft() {
         this.position_X -= this.speed;
     }
+    moveDown(){
+      
+        this.position_Y=500;
+    }
 
 
 
@@ -53,8 +57,8 @@ class MovableObjekt extends DrawableObject {
 
    
     // Schaden 
-    hit() {
-       this.health -= 2;
+    hit(damage) {
+       this.health -= damage;
         if (this.health < 0) {
             this.health = 0;
         }else{
