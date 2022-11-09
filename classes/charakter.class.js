@@ -76,7 +76,7 @@ class Charakter extends MovableObjekt {
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
         }
-        console.log('Ende');
+       
         this.world.camera_X = -this.position_X + 100;
     }
 

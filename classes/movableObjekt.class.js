@@ -28,13 +28,7 @@ class MovableObjekt extends DrawableObject {
     
 
 
-    // z.b. charakter.isColiding(chicken);
-    isColliding(mo) {
-        return this.position_X + this.width > mo.position_X &&
-            this.position_Y + this.height > mo.position_Y &&
-            this.position_X < mo.position_X &&
-            this.position_Y < mo.position_Y + mo.height
-    }
+ 
 
 
     moveRight() {

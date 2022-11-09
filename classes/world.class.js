@@ -1,9 +1,10 @@
 class World {
 
     character = new Charakter();
-    healthBar = new Healthbar(20,0);
+    healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
     bottleBar = new bottleBar();
+    finalBossHealthbar = new Healthbar(550, 0);
     throwableObjects = [];
     level = level1;
     ctx;
@@ -18,11 +19,11 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.read();
+        //this.read();
     }
 
     read() {
-        console.log('angelegte Flaschen', this.throwableObjects);
+        console.log(this.level.enemies[10].health);
     }
 
     setWorld() {
@@ -42,15 +43,18 @@ class World {
         }, 200);
     }
 
-hitChickens(bottle){
-  return  this.level.enemies.forEach((enemy) => {
-        if (bottle.isColliding(enemy)) {
-            enemy.hit(bottle.damage);
-        } else {
-            return true
-        }
-    });
-}
+    hitChickens(bottle) {
+        return this.level.enemies.forEach((enemy) => {
+            if (bottle.isColliding(enemy)) {
+                enemy.hit(bottle.damage);
+                this.read();
+                this.finalBossHealthbar.setPercentage(enemy.health);
+                
+            } else {
+                return true
+            }
+        });
+    }
 
     // Char is colliding with Enemy
     collEnemy() {
@@ -91,10 +95,13 @@ hitChickens(bottle){
             bottle.throw(); // werfen
             this.throwableObjects.push(bottle);
             this.character.collectedBottles -= 1;
-          setInterval(() => {
-               //Check Bottlecollison with Enemys 
+
+            setInterval(() => {
+                //Check Bottlecollison with Enemys 
                 this.hitChickens(bottle);
-            }, 1000 / 60);
+                
+            }, 100);
+            
             this.bottleBar.setPercentage(this.character.collectedBottles, this.level.bottle.length);
         }
     }
@@ -108,18 +115,18 @@ hitChickens(bottle){
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_X, 0);
-       
+
         //--------- Space for Fixed Elements--------------
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottleBar);
-       // Add Finalboss Healthbar
-        if(this.character.position_X>=200){
-            this.addToMap(new Healthbar(550,0));
+        // Add Finalboss Healthbar
+        if (this.character.position_X >= 200) {
+            this.addToMap(this.finalBossHealthbar);
         }
         this.ctx.translate(this.camera_X, 0);
 
-       
+
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addToMap(this.character);

@@ -19,7 +19,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken || this instanceof throwableObject) {
+        if (this instanceof Charakter || this instanceof Chicken || this instanceof throwableObject || this instanceof Endboss) {
 
             ctx.beginPath();
             ctx.lineWidth = '5';

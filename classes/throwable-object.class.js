@@ -14,7 +14,7 @@ IMAGE_ROTATION=[
         this.position_Y=y;
         this.width=50;
         this.height=50;
-     this.damage=10;
+     this.damage=20;
         //this.throw();
 
     }
@@ -26,6 +26,6 @@ IMAGE_ROTATION=[
         setInterval(()=>{
             this.position_X+=10;
            this.playAnimation(this.IMAGE_ROTATION);
-        },200)
+        },1000/60)
     }
 }
