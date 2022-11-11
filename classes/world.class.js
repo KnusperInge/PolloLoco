@@ -1,6 +1,7 @@
-class World {
+class World{
 
     character = new Charakter();
+    endBoss;
     healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
     bottleBar = new bottleBar();
@@ -11,8 +12,10 @@ class World {
     canvas;
     keyboard;
     camera_X = 0;
+   
 
     constructor(canvas, keyboard) {
+    
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -27,10 +30,12 @@ class World {
     }
 
     setWorld() {
+      this.endBoss=this.level.enemies[10];
         this.character.world = this;
+        this.endBoss.world=this;
 
 
-    }
+    } 
 
     run() {
         setInterval(() => {
@@ -49,7 +54,7 @@ class World {
                 enemy.hit(bottle.damage);
                 this.read();
                 this.finalBossHealthbar.setPercentage(enemy.health);
-                
+
             } else {
                 return true
             }
@@ -59,6 +64,7 @@ class World {
     // Char is colliding with Enemy
     collEnemy() {
         this.level.enemies.forEach((enemy) => {
+
             if (this.character.isColliding(enemy)) {
                 enemy.hit(this.character.damage);
                 this.character.hit(enemy.damage);
@@ -99,14 +105,13 @@ class World {
             setInterval(() => {
                 //Check Bottlecollison with Enemys 
                 this.hitChickens(bottle);
-                
+
             }, 100);
-            
+
             this.bottleBar.setPercentage(this.character.collectedBottles, this.level.bottle.length);
         }
     }
-
-
+   
 
     draw() {
         //Canvas leeren
@@ -121,7 +126,7 @@ class World {
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottleBar);
         // Add Finalboss Healthbar
-        if (this.character.position_X >= 200) {
+        if (this.character.position_X >= 2900) {
             this.addToMap(this.finalBossHealthbar);
         }
         this.ctx.translate(this.camera_X, 0);

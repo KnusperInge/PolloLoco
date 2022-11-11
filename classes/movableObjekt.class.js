@@ -1,7 +1,7 @@
 class MovableObjekt extends DrawableObject {
     speedY = 0;
     acceleration = 2.5; //Fallgeschwindigkeit
-    ohterDirection = false;
+    ohterDirection = false;ff
     speed = 0.15;
    lastHit=0;
 

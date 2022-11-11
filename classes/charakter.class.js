@@ -49,12 +49,16 @@ class Charakter extends MovableObjekt {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGE_LOSE);
         this.animate();
         this.applyGravity();
+       
     }
 
+ 
+
     animate() {
-        setInterval(() => this.moveChar(), 1000 / 60)
+        setInterval(() => this.moveChar(), 1000 / 60);
         setInterval(() => this.animChar(), 60);
     }
 
@@ -83,8 +87,7 @@ class Charakter extends MovableObjekt {
     animChar() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-
-        } else if (this.isHurt()) {
+         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
 
         } else if (this.isAboveGround()) {
@@ -97,4 +100,6 @@ class Charakter extends MovableObjekt {
             }
         }
     }
+
+
 }

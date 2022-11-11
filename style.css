@@ -1,10 +1,37 @@
+@font-face {
+    font-family:'zabras';
+    src: url('fonts/ZABARS/Zabars.ttf') format('truetype');
+}
+
 body{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url('img/dessert_bg.jpg');
+    background-size: cover;
+    margin: 0;
+}
+h1{
+    font-size: 64px;
+    letter-spacing: 3px;
+    text-shadow: 2px 4px 8px rgba(252, 0, 0, 0.596);
+    margin: 0;
+    color: aliceblue;
+    font-family:'zabras',Arial, Helvetica, sans-serif;
+}
+.display{
+ 
+    height: 100vh;
+   width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 canvas{
+  border: 4px solid rgb(5, 0, 46);
+  border-radius: 10px;
     background-color: rgb(37, 36, 35);
     
 }

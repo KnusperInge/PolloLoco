@@ -10,9 +10,21 @@ class DrawableObject {
     coins = 0;
     collectedBottles = 0;
     loadedBottles = 0;
-    damage=0;
+    damage = 0;
 
+offSet={
+    Left:0,
+    Right:0,
+    Top:0,
+    Bottom:0,
+};
 
+    IMAGE_LOSE = [
+        'img/9_intro_outro_screens/game_over/game over!.png',
+        'img/9_intro_outro_screens/game_over/game over.png',
+        'img/9_intro_outro_screens/game_over/oh no you lost!.png',
+        'img/9_intro_outro_screens/game_over/you lost.png',
+    ];
 
     draw(ctx) {
         ctx.drawImage(this.img, this.position_X, this.position_Y, this.width, this.height);
@@ -50,13 +62,13 @@ class DrawableObject {
         this.currentImage++;
     }
 
-   // z.b. charakter.isColiding(chicken);
-   isColliding(mo) {
-    return this.position_X + this.width > mo.position_X &&
-        this.position_Y + this.height > mo.position_Y &&
-        this.position_X < mo.position_X &&
-        this.position_Y < mo.position_Y + mo.height
-}
+    // z.b. charakter.isColiding(chicken);
+    isColliding(mo) {
+        return this.position_X + this.width - this.offSet.Right > mo.position_X + mo.offSet.Left &&
+            this.position_Y + this.height - this.offSet.Bottom > mo.position_Y + mo.offSet.Top &&
+            this.position_X + this.offSet.Left < mo.position_X - mo.offSet.Right &&
+            this.position_Y + this.offSet.Top < mo.position_Y + mo.height - mo.offSet.Bottom
+    }
 
     collectCoin() {
         this.coins += 1;
