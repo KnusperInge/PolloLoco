@@ -1,6 +1,7 @@
-class World{
+class World {
 
     character = new Charakter();
+    outro = new Outro();
     endBoss;
     healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
@@ -12,10 +13,10 @@ class World{
     canvas;
     keyboard;
     camera_X = 0;
-   
+dead=false;
 
     constructor(canvas, keyboard) {
-    
+
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -30,12 +31,12 @@ class World{
     }
 
     setWorld() {
-      this.endBoss=this.level.enemies[10];
+        this.endBoss = this.level.enemies[10];
         this.character.world = this;
-        this.endBoss.world=this;
+        this.endBoss.world = this;
 
 
-    } 
+    }
 
     run() {
         setInterval(() => {
@@ -44,9 +45,31 @@ class World{
             this.collEnemy();
             this.collCoin();
             this.checkThrowableObjects();
-
+            this.checkDead();
         }, 200);
     }
+
+letitDie(enemy){
+    this.character.stopIntervals();
+    this.character.delete();
+    enemy.stopIntervals();
+    enemy.delete();
+    this.level.coins.forEach((coin)=>{
+        coin.delete();
+    })
+    this.level.bottle.forEach((b)=>{
+        b.delete();
+    })
+}
+
+checkDead(){
+if(this.character.isDead()){
+    this.dead=true;
+   // this.outro.animate();
+}else{
+    this.dead=false;
+}
+}
 
     hitChickens(bottle) {
         return this.level.enemies.forEach((enemy) => {
@@ -64,7 +87,10 @@ class World{
     // Char is colliding with Enemy
     collEnemy() {
         this.level.enemies.forEach((enemy) => {
-
+            if(this.dead){
+             this.letitDie(enemy);
+               
+            }else
             if (this.character.isColliding(enemy)) {
                 enemy.hit(this.character.damage);
                 this.character.hit(enemy.damage);
@@ -111,24 +137,32 @@ class World{
             this.bottleBar.setPercentage(this.character.collectedBottles, this.level.bottle.length);
         }
     }
-   
+
 
     draw() {
         //Canvas leeren
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_X, 0);
+      
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_X, 0);
 
         //--------- Space for Fixed Elements--------------
+     
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottleBar);
+      
         // Add Finalboss Healthbar
         if (this.character.position_X >= 2900) {
             this.addToMap(this.finalBossHealthbar);
         }
+        if(this.dead){
+            this.addToMap(this.outro);
+           
+            console.log('tot, ende');
+           }
         this.ctx.translate(this.camera_X, 0);
 
 
@@ -137,7 +171,7 @@ class World{
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
-
+      
         this.ctx.translate(-this.camera_X, 0);
 
         //draw() wird immer wieder aufgerufen

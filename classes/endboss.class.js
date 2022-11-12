@@ -51,7 +51,7 @@ class Endboss extends MovableObjekt {
     }
     animate() {
         let i = 0;
-        setInterval(() => {
+       this.setStoppableIntervals(() => {
           
       
            if(i<10){

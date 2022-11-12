@@ -6,6 +6,14 @@ class Charakter extends MovableObjekt {
     world;
     walking_sound = new Audio('audio/walking.mp3');
     damage=10;
+health=10;
+    offSet={
+        Left:40,
+        Right:30,
+        Top:120,
+        Bottom:30,
+    };
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -14,6 +22,7 @@ class Charakter extends MovableObjekt {
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png'
     ];
+
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
@@ -49,7 +58,7 @@ class Charakter extends MovableObjekt {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.loadImages(this.IMAGE_LOSE);
+      
         this.animate();
         this.applyGravity();
        
@@ -58,8 +67,8 @@ class Charakter extends MovableObjekt {
  
 
     animate() {
-        setInterval(() => this.moveChar(), 1000 / 60);
-        setInterval(() => this.animChar(), 60);
+        this.setStoppableIntervals(()=>this.moveChar(), 1000 / 60);
+        this.setStoppableIntervals(() => this.animChar(), 60);
     }
 
     moveChar() {
@@ -87,6 +96,8 @@ class Charakter extends MovableObjekt {
     animChar() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
+            this.stopIntervals();
+          //  this.world.enemies.forEach(stopIntervals);
          } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
 

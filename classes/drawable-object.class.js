@@ -12,19 +12,14 @@ class DrawableObject {
     loadedBottles = 0;
     damage = 0;
 
+    intervalIDs=[];
+
 offSet={
     Left:0,
     Right:0,
     Top:0,
     Bottom:0,
 };
-
-    IMAGE_LOSE = [
-        'img/9_intro_outro_screens/game_over/game over!.png',
-        'img/9_intro_outro_screens/game_over/game over.png',
-        'img/9_intro_outro_screens/game_over/oh no you lost!.png',
-        'img/9_intro_outro_screens/game_over/you lost.png',
-    ];
 
     draw(ctx) {
         ctx.drawImage(this.img, this.position_X, this.position_Y, this.width, this.height);
@@ -82,7 +77,13 @@ offSet={
         this.position_Y = 500;
     }
 
-
+    stopIntervals(){
+        this.intervalIDs.forEach(clearInterval);
+    }
+setStoppableIntervals(fn,time){
+    let id= setInterval(fn,time);
+    this.intervalIDs.push(id);
+}
 
 
 

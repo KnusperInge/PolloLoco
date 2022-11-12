@@ -21,7 +21,7 @@ class Chicken extends MovableObjekt {
         this.health=2;
     }
     animate() {
-         setInterval(() => {
+        this.setStoppableIntervals(() => {
             if(this.isDead()){
               this.dead();
             }  else{
@@ -29,7 +29,7 @@ class Chicken extends MovableObjekt {
             }   
         }, 1000 / 60);
         
-        setInterval(() => {
+       this.setStoppableIntervals(() => {
            if(this.isDead()){
             this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
            }else{
@@ -41,7 +41,7 @@ class Chicken extends MovableObjekt {
     }
 dead(){
     this.position_X=this.position_X;
-    setInterval(()=>{
+   this.setStoppableIntervals(()=>{
       this.moveDown();
     },1000);
     
