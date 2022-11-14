@@ -96,8 +96,7 @@ health=10;
     animChar() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-            this.stopIntervals();
-          //  this.world.enemies.forEach(stopIntervals);
+         
          } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
 
