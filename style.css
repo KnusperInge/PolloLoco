@@ -1,11 +1,20 @@
+@keyframes icon_rotation{
+    from{rotate: 0deg;}
+    to{rotate: 360deg;}    
+}
+
 @font-face {
     font-family:'zabras';
     src: url('fonts/ZABARS/Zabars.ttf') format('truetype');
 }
 
 @media only screen and (max-width:720px){
+    .display{
+width: 97% !important;
+    }
     canvas {
         width: 100%;
+
     }
 }
 @media only screen and (max-height:480px){
@@ -32,6 +41,7 @@ body{
     background-image: url('img/dessert_bg.jpg');
     background-size: cover;
     margin: 0;
+  
 }
 h1{
     font-size: 64px;
@@ -42,13 +52,14 @@ h1{
     font-family:'zabras',Arial, Helvetica, sans-serif;
 }
 .display{
- 
-    height: 100vh;
+
+    height: 90vh;
    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 }
 canvas{
   display: block;
@@ -80,4 +91,129 @@ canvas{
     justify-content: end;
     width: 100%;
     
+}
+.info-btn{
+    
+    width: 100%;
+    text-align: end;
+}
+.info-btn img{
+width: 60px;
+margin-right:5px;
+}
+.info-btn img:hover{
+    cursor: pointer;
+}
+#InfoFrame{
+  
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.575);
+    justify-content: center;
+    align-items: center;
+}
+#GameInfo{
+    background-color: rgb(255, 248, 224);
+    width: 40%;
+    height: 70%;
+    border-radius: 20px;
+}
+.ctl-Desktop img, .ctl-Mobile img{
+    width: 50px;
+}
+.ctl-Desktop,.ctl-Mobile {
+    width: 100%;
+   
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid lightgrey;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.btn span{
+    padding-top: 10px;
+}
+
+.ctl-Mobile{
+  padding-top: 50px;
+}
+
+.margin-left-right, h4, h3{
+    margin-left:10px ;
+    margin-right: 10px;
+}
+
+.info-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
+.info-head img{
+width: 40px;
+height: 40px;
+margin-right: 10px;
+cursor: pointer;
+
+}
+
+.info-head img:hover, .info-btn img:hover{
+    animation-name: icon_rotation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.d-none{
+    display:none;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.startscreen{
+   height: 480px;
+   width: 720px;
+    margin-top: 4%;
+    position: absolute;
+    z-index: 999;
+
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url("img/9_intro_outro_screens/start/startscreen_1.png");
+ background-size:720px 480px;
+ background-repeat: no-repeat;
+ border-radius: 5px;
+
+}
+
+.Button{
+    font-size: 40px;
+    font-weight: 700;
+    background-color: goldenrod;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  box-shadow: 2px 3px 5px rgba(151, 151, 151, 0.767);
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 10px;
+    margin-top: 10%;
+}
+
+.Button:hover{
+    
+    background-color: rgb(0, 0, 0);
+    color: white;
+    cursor: pointer;
 }

@@ -11,7 +11,7 @@
     <script src="classes/movableObjekt.class.js"></script>
     <script src="classes/endboss.class.js"></script>
     <script src="classes/charakter.class.js"></script>
- <script src="classes/chicken.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
     <script src="classes/cloud.class.js"></script>
     <script src="classes/bottle.class.js"></script>
     <script src="classes/outro.class.js"></script>
@@ -20,33 +20,106 @@
     <script src="classes/coinsbar.class.js"></script>
     <script src="classes/world.class.js"></script>
     <script src="classes/background-object.class.js"></script>
-   <script src="classes/coins.class.js"></script>
-        <script src="classes/Keyboard.class.js"></script>
-        <script src="classes/level.class.js"></script>
-        <script src="classes/throwable-object.class.js"></script>
-       
-        <script src="levels/level1.js"></script>
-        <script src="js/game.js"></script>
-        <title>El Pollo Loco</title>
+    <script src="classes/coins.class.js"></script>
+    <script src="classes/Keyboard.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
+
+    <script src="levels/level1.js"></script>
+    <script src="js/game.js"></script>
+    <title>El Pollo Loco</title>
 </head>
 
-<body onload="init()">
+<body onload="">
+    <div class="info-btn">
+        <img src="img/control/info.png" alt="" onclick="openGameInfo()">
+    </div>
     
     <div class="display">
         <h1> El Pollo Loco</h1>
-        <canvas id="canvas" width="720" height="480"></canvas>
-    <div class="control">
-        <div class="control-left">
-            <img src="img/control/left.png" alt="">
-            <img src="img/control/right.png" alt="">
-        </div>
-        <div class="control-right">
-<img src="img/control/jump.png" alt="">
-<img src="img/control/fire.png" alt="">
+        <canvas class="" id="canvas" width="720" height="480"></canvas>
+     <div id="startScreen" class="startscreen d-flex">
+        <span onclick="start()"class="Button">Start</span>
+     </div>
+        
+        <div class="control">
+            <div class="control-left">
+                <img src="img/control/left.png" alt="">
+                <img src="img/control/right.png" alt="">
+            </div>
+            <div class="control-right">
+                <img src="img/control/jump.png" alt="">
+                <img src="img/control/fire.png" alt="">
+            </div>
         </div>
     </div>
+
+    <div id="InfoFrame" class="d-none">
+        <div id="GameInfo">
+            <div>
+               <div class=" info-head">
+                <h3>Was ist zu tun ? </h3>
+                <img onclick="closeGameInfo()" id="close-btn" src="img/close.png" alt="">
+               </div>
+               
+               <div class="margin-left-right">
+                <span> 
+                    Ziel des Spiel ist es den Endboss zu besiegen, <br>auf dem Weg dahin möglichst viele Münzen und Salsaflaschen zu sammeln.<br> Sowie wie alle Gegner zu töten oder diesen geschickt auszuweichen.
+                </span>
+               </div>
+                
+            </div>
+            <div>
+                <h3> Steuerung</h3>
+                <h4> Desktop:</h4>
+
+                <div class="ctl-Desktop margin-left-right">
+                    <div class="btn">
+                        <div>
+                            <img src="img/control/left-arrow-variant-key-on-keyboard.png" alt="">
+                            <img src="img/control/keyboard-key-pointing-to-right.png" alt="">
+                        </div>
+                        <span>links / rechts bewegen</span>
+                        <span>move left / right</span>
+                    </div>
+                    <div class="btn">
+                        <img src="img/control/button.png" alt="">
+                        <span>Springen</span>
+                        <span>Jump</span>
+                    </div>
+                    <div class="btn">
+                        <img src="img/control/keyboard-key-f.png" alt="">
+                        <span> Werfen</span>
+                        <span> Throw</span>
+                    </div>
+                </div>
+
+                <h4>Mobile:</h4>
+
+                <div class="ctl-Mobile">
+                    <div class="btn">
+                        <div>
+                            <img src="img/control/left.png" alt="">
+                            <img src="img/control/right.png" alt="">
+                        </div>
+                        <span>links / rechts bewegen</span>
+                        <span>move left / right</span>
+                    </div>
+                    <div class="btn">
+                        <img src="img/control/jump.png" alt="">
+                        <span>Springen</span>
+                        <span>Jump</span>
+                    </div>
+                    <div class="btn">
+                        <img src="img/control/fire.png" alt="">
+                        <span> Werfen</span>
+                        <span> Throw</span>
+                    </div>
+                </div>
+           
+            </div>
+        </div>
     </div>
-  
 </body>
 
 </html>

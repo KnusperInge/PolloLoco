@@ -6,7 +6,7 @@ class Charakter extends MovableObjekt {
     world;
     walking_sound = new Audio('audio/walking.mp3');
     damage=10;
-health=10;
+
     offSet={
         Left:40,
         Right:30,
