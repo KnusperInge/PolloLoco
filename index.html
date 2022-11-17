@@ -26,11 +26,11 @@
     <script src="classes/throwable-object.class.js"></script>
 
     <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script>
+    
     <title>El Pollo Loco</title>
 </head>
 
-<body onload="">
+<body onload="init()">
     <div class="info-btn">
         <img src="img/control/info.png" alt="" onclick="openGameInfo()">
     </div>
@@ -38,18 +38,18 @@
     <div class="display">
         <h1> El Pollo Loco</h1>
         <canvas class="" id="canvas" width="720" height="480"></canvas>
-     <div id="startScreen" class="startscreen d-flex">
+     <div id="startScreen" class="startscreen d-none">
         <span onclick="start()"class="Button">Start</span>
      </div>
         
         <div class="control">
             <div class="control-left">
-                <img src="img/control/left.png" alt="">
-                <img src="img/control/right.png" alt="">
+                <img id="btn_Left" src="img/control/left.png" alt="">
+                <img id="btn_Right" src="img/control/right.png" alt="">
             </div>
             <div class="control-right">
-                <img src="img/control/jump.png" alt="">
-                <img src="img/control/fire.png" alt="">
+                <img id="btn_Jump" src="img/control/jump.png" alt="">
+                <img id="btn_Fire" src="img/control/fire.png" alt="">
             </div>
         </div>
     </div>
@@ -120,6 +120,7 @@
             </div>
         </div>
     </div>
+    <script src="js/game.js"></script>
 </body>
 
 </html>

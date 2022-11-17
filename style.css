@@ -17,7 +17,7 @@ width: 97% !important;
 
     }
 }
-@media only screen and (max-height:480px){
+@media only screen and (max-height:580px){
     canvas {
         height: 98vh;
         
