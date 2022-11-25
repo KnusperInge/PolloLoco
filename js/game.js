@@ -14,13 +14,18 @@ function closeGameInfo(){
 }
 
 function start(){
-    
+  
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('startScreen').classList.remove('d-flex');
     init();
 }
+function reload(){
+    location.reload();
+}
 function init(){
+    
     canvas=document.getElementById('canvas');
+    
     world= new World(canvas,keyboard);
 
    

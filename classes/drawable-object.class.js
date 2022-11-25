@@ -25,8 +25,10 @@ offSet={
         ctx.drawImage(this.img, this.position_X, this.position_Y, this.width, this.height);
     }
 
+
+
     drawFrame(ctx) {
-        if (this instanceof Charakter || this instanceof Chicken || this instanceof throwableObject || this instanceof Endboss) {
+        if ( this instanceof Charakter || this instanceof Chicken || this instanceof throwableObject || this instanceof Endboss) {
 
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -59,11 +61,15 @@ offSet={
 
     // z.b. charakter.isColiding(chicken);
     isColliding(mo) {
-        return this.position_X + this.width - this.offSet.Right > mo.position_X + mo.offSet.Left &&
-            this.position_Y + this.height - this.offSet.Bottom > mo.position_Y + mo.offSet.Top &&
+        return(
+            //horizontal collsion
+            this.position_X + this.width - this.offSet.Right > mo.position_X + mo.offSet.Left &&
             this.position_X + this.offSet.Left < mo.position_X - mo.offSet.Right &&
+            //vertical collsion
+            this.position_Y + this.height - this.offSet.Bottom > mo.position_Y + mo.offSet.Top &&
             this.position_Y + this.offSet.Top < mo.position_Y + mo.height - mo.offSet.Bottom
-    }
+        ) 
+ }
 
     collectCoin() {
         this.coins += 1;

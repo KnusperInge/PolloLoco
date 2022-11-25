@@ -1,7 +1,8 @@
 class Chicken extends MovableObjekt {
-    height = 50;
-    width = 50;
-    position_Y = 380;
+    height = 80;
+    width = 80;
+    position_Y = 350;
+    
     damage=2;
  
 
@@ -36,14 +37,14 @@ class Chicken extends MovableObjekt {
             this.playAnimation(this.IMAGES_WALKING);
         }  
                   
-                 
-              }, 200);
+                  
+              },200);
     }
 dead(){
     this.position_X=this.position_X;
    this.setStoppableIntervals(()=>{
       this.moveDown();
-    },1000);
+    },250);
     
 }
     

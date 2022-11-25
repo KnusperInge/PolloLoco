@@ -1,7 +1,7 @@
 class World {
 
     character = new Charakter();
-    outro = new Outro();
+    outro = new Outro(0);
     endBoss;
     healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
@@ -13,7 +13,7 @@ class World {
     canvas;
     keyboard;
     camera_X = 0;
-dead=false;
+    dead = false;
 
     constructor(canvas, keyboard) {
 
@@ -34,50 +34,50 @@ dead=false;
         this.endBoss = this.level.enemies[10];
         this.character.world = this;
         this.endBoss.world = this;
+        this.outro.world = this;
 
 
     }
 
     run() {
         setInterval(() => {
-
             this.collBottle();
             this.collEnemy();
             this.collCoin();
             this.checkThrowableObjects();
             this.checkDead();
-        }, 200);
+        }, 60);
     }
 
-letitDie(enemy){
-    this.character.stopIntervals();
-    this.character.delete();
-    enemy.stopIntervals();
-    enemy.delete();
-    this.level.coins.forEach((coin)=>{
-        coin.delete();
-    })
-    this.level.bottle.forEach((b)=>{
-        b.delete();
-    })
-}
+    //Char is Dead
+    letitDie(enemy) {
+        this.character.stopIntervals();
+        this.character.delete();
+        enemy.stopIntervals();
+        enemy.delete();
+        this.level.coins.forEach((coin) => {
+            coin.delete();
+        })
+        this.level.bottle.forEach((b) => {
+            b.delete();
+        })
+    }
 
-checkDead(){
-if(this.character.isDead()){
-    this.dead=true;
-   // this.outro.animate();
-}else{
-    this.dead=false;
-}
-}
+    checkDead() {
+        if (this.character.isDead()) {
+            this.dead = true;
+
+        } else {
+            this.dead = false;
+        }
+    }
 
     hitChickens(bottle) {
         return this.level.enemies.forEach((enemy) => {
             if (bottle.isColliding(enemy)) {
+                bottle.splash();
                 enemy.hit(bottle.damage);
-                this.read();
                 this.finalBossHealthbar.setPercentage(enemy.health);
-
             } else {
                 return true
             }
@@ -87,17 +87,20 @@ if(this.character.isDead()){
     // Char is colliding with Enemy
     collEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if(this.dead){
-             this.letitDie(enemy);
-               
-            }else
-            if (this.character.isColliding(enemy)) {
+            if (this.dead) {
+                this.letitDie(enemy);
+            } else if (this.character.isAboveGround() && this.character.isColliding(enemy)) {
+               // Hit Enemy with Jumps
+                enemy.hit(this.character.damage);
+            } else if (!this.character.isAboveGround() && this.character.isColliding(enemy) && !enemy.isDead()) {
+               // Hit Enemy with collision
                 enemy.hit(this.character.damage);
                 this.character.hit(enemy.damage);
                 this.healthBar.setPercentage(this.character.health);
             }
         })
     }
+
 
     // Char is collecting Coins
     collCoin() {
@@ -132,7 +135,7 @@ if(this.character.isDead()){
                 //Check Bottlecollison with Enemys 
                 this.hitChickens(bottle);
 
-            }, 100);
+            }, 1000 / 60);
 
             this.bottleBar.setPercentage(this.character.collectedBottles, this.level.bottle.length);
         }
@@ -143,35 +146,29 @@ if(this.character.isDead()){
         //Canvas leeren
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_X, 0);
-      
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_X, 0);
 
         //--------- Space for Fixed Elements--------------
-     
+
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottleBar);
-      
+
         // Add Finalboss Healthbar
         if (this.character.position_X >= 2900) {
             this.addToMap(this.finalBossHealthbar);
         }
-        if(this.dead){
+        if (this.dead) {
             this.addToMap(this.outro);
-           
-            console.log('tot, ende');
-           }
+        }
         this.ctx.translate(this.camera_X, 0);
-
-
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
-      
         this.ctx.translate(-this.camera_X, 0);
 
         //draw() wird immer wieder aufgerufen
@@ -194,12 +191,9 @@ if(this.character.isDead()){
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx);
-
         if (mo.ohterDirection) {
             this.flipImageBack(mo);
-
         }
     }
     flipImage(mo) {

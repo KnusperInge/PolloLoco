@@ -5,6 +5,7 @@ class Endboss extends MovableObjekt {
     damage = 20;
     firstContact = false;
     world;
+    loop=0;
 
     IMAGES_INTRO = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -52,12 +53,16 @@ class Endboss extends MovableObjekt {
     animate() {
         let i = 0;
        this.setStoppableIntervals(() => {
-          
+          if(this.isDead()){
+            this.loop+=1;
+            console.log('endboss Loop', this.loop);
+          }
       
            if(i<10){
                 this.playAnimation(this.IMAGES_INTRO);
             }else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else {
@@ -71,7 +76,13 @@ class Endboss extends MovableObjekt {
                this.speed=10;
             } 
             i++;
+            
+           if(this.loop==24){
+            clearInterval(this.stopIntervals());
+            document.getElementById('startScreen').classList.add('d-flex');
            
+           }
+
         }, 200);
     }
 }

@@ -2,16 +2,16 @@ class Charakter extends MovableObjekt {
     height = 250;
     width = 130;
     speed = 5;
-    position_Y = 80;
+    position_Y =  80;
     world;
-    walking_sound = new Audio('audio/walking.mp3');
+   
     damage=10;
-
+    groundPosY=180;
     offSet={
-        Left:40,
-        Right:30,
-        Top:120,
-        Bottom:30,
+        Left:20,
+        Right:20,
+        Top:50,
+        Bottom:0,
     };
 
     IMAGES_WALKING = [
@@ -64,7 +64,6 @@ class Charakter extends MovableObjekt {
        
     }
 
- 
 
     animate() {
         this.setStoppableIntervals(()=>this.moveChar(), 1000 / 60);
@@ -72,22 +71,24 @@ class Charakter extends MovableObjekt {
     }
 
     moveChar() {
-        this.walking_sound.pause();
+        
         //rechts laufen
         if (this.world.keyboard.RIGHT && this.position_X < this.world.level.levelEnd_X) {
             this.moveRight();
             this.ohterDirection = false;
-            this.walking_sound.play();
+            
+           
         }
         //links laufen
         if (this.world.keyboard.LEFT && this.position_X > 100) {
             this.moveLeft();
             this.ohterDirection = true;
-            this.walking_sound.play();
+          
         }
         // springen
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
+           
         }
        
         this.world.camera_X = -this.position_X + 100;

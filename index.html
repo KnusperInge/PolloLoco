@@ -31,15 +31,22 @@
 </head>
 
 <body onload="init()">
-    <div class="info-btn">
-        <img src="img/control/info.png" alt="" onclick="openGameInfo()">
-    </div>
+   
     
     <div class="display">
         <h1> El Pollo Loco</h1>
         <canvas class="" id="canvas" width="720" height="480"></canvas>
      <div id="startScreen" class="startscreen d-none">
-        <span onclick="start()"class="Button">Start</span>
+        <div class="info-btn">
+            <img src="img/control/info.png" alt="" onclick="openGameInfo()">
+        </div>
+        <div  id ="startBtn" class="startBtn">
+            <span onclick="start()"class="Button">Start</span>
+        </div>
+        <div  id ="reloadBtn" class="reloadBtn d-none">
+            <span onclick="reload()"class="Button">Try Again ?</span>
+        </div>
+       
      </div>
         
         <div class="control">
@@ -69,11 +76,11 @@
                </div>
                 
             </div>
-            <div>
-                <h3> Steuerung</h3>
-                <h4> Desktop:</h4>
-
-                <div class="ctl-Desktop margin-left-right">
+           
+            <div class="Control-wrapper">
+                <h3> Steuerung:</h3>
+                 <div class="ctl-Desktop margin-left-right">
+                    
                     <div class="btn">
                         <div>
                             <img src="img/control/left-arrow-variant-key-on-keyboard.png" alt="">
@@ -94,9 +101,10 @@
                     </div>
                 </div>
 
-                <h4>Mobile:</h4>
+               
 
                 <div class="ctl-Mobile">
+                    
                     <div class="btn">
                         <div>
                             <img src="img/control/left.png" alt="">

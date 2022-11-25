@@ -8,7 +8,7 @@ width=600;
     
         
        
-        this.position_X=0+Math.random()*500; // Zahl zw. 200 und 700
+        this.position_X=0+Math.random()*2500; // Zahl zw. 200 und 700
         this.animate();
     
      }

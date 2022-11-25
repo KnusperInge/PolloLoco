@@ -1,7 +1,7 @@
 class MovableObjekt extends DrawableObject {
     speedY = 0;
     acceleration = 2.5; //Fallgeschwindigkeit
-    ohterDirection = false;ff
+    ohterDirection = false;
     speed = 0.15;
    lastHit=0;
 
@@ -18,18 +18,18 @@ class MovableObjekt extends DrawableObject {
        if(this instanceof throwableObject){
         return true;
        }else{
-        return this.position_Y < 180;
+        return this.position_Y < this.groundPosY;
        }
         
     }
-
-
- 
     
+       
+        
+  
 
-
- 
-
+isFalling(){
+    return this.speedY> 0;
+} 
 
     moveRight() {
         this.position_X += this.speed;
