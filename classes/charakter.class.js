@@ -2,16 +2,16 @@ class Charakter extends MovableObjekt {
     height = 250;
     width = 130;
     speed = 5;
-    position_Y =  80;
+    position_Y = 80;
     world;
-   
-    damage=10;
-    groundPosY=180;
-    offSet={
-        Left:20,
-        Right:20,
-        Top:50,
-        Bottom:0,
+
+
+    groundPosY = 180;
+    offSet = {
+        Left: 20,
+        Right: 20,
+        Top: 50,
+        Bottom: 0,
     };
 
     IMAGES_WALKING = [
@@ -58,47 +58,43 @@ class Charakter extends MovableObjekt {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-      
         this.animate();
         this.applyGravity();
-       
+        this.jumpheight = 30;
+        this.damage = 10;
+        this.health=100;
     }
 
-
     animate() {
-        this.setStoppableIntervals(()=>this.moveChar(), 1000 / 60);
+        this.setStoppableIntervals(() => this.moveChar(), 1000 / 60);
         this.setStoppableIntervals(() => this.animChar(), 60);
     }
 
     moveChar() {
-        
         //rechts laufen
         if (this.world.keyboard.RIGHT && this.position_X < this.world.level.levelEnd_X) {
             this.moveRight();
             this.ohterDirection = false;
-            
-           
         }
+
         //links laufen
         if (this.world.keyboard.LEFT && this.position_X > 100) {
             this.moveLeft();
             this.ohterDirection = true;
-          
         }
+
         // springen
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
-           
         }
-       
         this.world.camera_X = -this.position_X + 100;
     }
 
     animChar() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-         
-         } else if (this.isHurt()) {
+
+        } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
 
         } else if (this.isAboveGround()) {

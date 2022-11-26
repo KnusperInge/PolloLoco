@@ -2,7 +2,7 @@ class Chicken extends MovableObjekt {
     height = 80;
     width = 80;
     position_Y = 350;
-    
+    groundPosY=350;
     damage=2;
  
 
@@ -18,8 +18,11 @@ class Chicken extends MovableObjekt {
         this.loadImages(this.IMAGES_WALKING);
         this.position_X=350+Math.random()*2500;
         this.speed=0.25+Math.random()*0.5; 
+       this.jumpheight=Math.random()*25;
         this.animate();
+       this.applyGravity();
         this.health=2;
+        this.ground
     }
     animate() {
         this.setStoppableIntervals(() => {
@@ -27,6 +30,10 @@ class Chicken extends MovableObjekt {
               this.dead();
             }  else{
                 this.moveLeft();
+             if(!this.isAboveGround()){
+                this.jump();
+             }
+                
             }   
         }, 1000 / 60);
         
@@ -40,7 +47,8 @@ class Chicken extends MovableObjekt {
                   
               },200);
     }
-dead(){
+
+    dead(){
     this.position_X=this.position_X;
    this.setStoppableIntervals(()=>{
       this.moveDown();
