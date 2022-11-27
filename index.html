@@ -9,9 +9,11 @@
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
     <script src="classes/drawable-object.class.js"></script>
     <script src="classes/movableObjekt.class.js"></script>
-    <script src="classes/endboss.class.js"></script>
+   
     <script src="classes/charakter.class.js"></script>
     <script src="classes/chicken.class.js"></script>
+    <script src="classes/chicken_small.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
     <script src="classes/cloud.class.js"></script>
     <script src="classes/bottle.class.js"></script>
     <script src="classes/outro.class.js"></script>
@@ -30,15 +32,17 @@
     <title>El Pollo Loco</title>
 </head>
 
-<body onload="init()">
+<body>
    
-    
-    <div class="display">
-        <h1> El Pollo Loco</h1>
+    <h1> El Pollo Loco</h1>
+    <div id="display" class="display">
+        
         <canvas class="" id="canvas" width="720" height="480"></canvas>
-     <div id="startScreen" class="startscreen d-none">
+     <div id="startScreen" class="startscreen d-flex">
         <div class="info-btn">
+            <img  src="img/fullscreen.png" alt="" onclick="fullscreenModus()">
             <img src="img/control/info.png" alt="" onclick="openGameInfo()">
+            
         </div>
         <div  id ="startBtn" class="startBtn">
             <span onclick="start()"class="Button">Start</span>

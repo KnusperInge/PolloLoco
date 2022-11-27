@@ -2,7 +2,7 @@ class Endboss extends MovableObjekt {
     height = 500;
     width = 300;
     position_Y = -50;
-    damage = 20;
+    damage = 25;
     firstContact = false;
     world;
     loop=0;
@@ -48,7 +48,7 @@ class Endboss extends MovableObjekt {
         this.position_X = 3280;
         this.animate();
         this.speed=0;
-      
+     
     }
     animate() {
         let i = 0;

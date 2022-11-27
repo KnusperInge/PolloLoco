@@ -14,7 +14,7 @@ class World {
     keyboard;
     camera_X = 0;
     dead = false;
-
+    gameStatus=false;
     constructor(canvas, keyboard) {
 
         this.ctx = canvas.getContext('2d');
@@ -23,15 +23,15 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        //this.read();
+       this.log();
     }
-
-    read() {
-        console.log(this.level.enemies[10].health);
-    }
+log(){
+    console.log(this.level.enemies.length);
+}
+   
 
     setWorld() {
-        this.endBoss = this.level.enemies[10];
+      this.endBoss = this.level.enemies[10];
         this.character.world = this;
         this.endBoss.world = this;
         this.outro.world = this;
@@ -45,6 +45,7 @@ class World {
             this.collEnemy();
             this.collCoin();
             this.checkThrowableObjects();
+            this.checkWin();
             this.checkDead();
         }, 60);
     }
@@ -62,6 +63,12 @@ class World {
             b.delete();
         })
     }
+
+checkWin(){
+    if(this.endBoss.isDead()){
+        this.gameStatus=true;
+     }
+}
 
     checkDead() {
         if (this.character.isDead()) {
@@ -191,7 +198,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+       // mo.drawFrame(this.ctx);
         if (mo.ohterDirection) {
             this.flipImageBack(mo);
         }

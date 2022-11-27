@@ -4,9 +4,7 @@ class Charakter extends MovableObjekt {
     speed = 5;
     position_Y = 80;
     world;
-
-
-    groundPosY = 180;
+ groundPosY = 180;
     offSet = {
         Left: 20,
         Right: 20,

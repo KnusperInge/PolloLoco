@@ -31,6 +31,13 @@
 @media only screen and (max-width:720px){
     .display{
 width: 97% !important;
+
+
+    }
+    
+    .startscreen{
+        width: 100% !important;
+       
     }
     canvas {
         width: 100%;
@@ -54,7 +61,7 @@ width: 97% !important;
     }
 
     .startscreen{
-        height: 100vh !important;
+        height: 100% !important;
         width: 100vw !important;
         background-size: 100% 100% !important;
         border-radius:0 !important;
@@ -80,29 +87,31 @@ width: 97% !important;
 body{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     background-image: url('img/dessert_bg.jpg');
     background-size: cover;
     margin: 0;
+    height: 100vh;
   
 }
 h1{
     font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 2px 4px 8px rgba(252, 0, 0, 0.596);
+   padding-top: 100px;
     margin: 0;
     color: aliceblue;
     font-family:'zabras',Arial, Helvetica, sans-serif;
 }
 .display{
-
-    height: 90vh;
+margin-top: 2%;
+    height: 100%;
    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:flex-start;
     
 }
 canvas{
@@ -138,14 +147,16 @@ width: 100%;
     
 }
 .info-btn{
-    
-    width: 100%;
+ width: 100%;
     text-align: end;
     
 }
+
 .info-btn img{
-width: 60px;
+width: 50px;
 margin-right:5px;
+margin-top: 5px;
+
 }
 .info-btn img:hover{
     cursor: pointer;
@@ -239,9 +250,6 @@ cursor: pointer;
 .startscreen{
    height: 480px;
    width:720px;
-    margin-top: 4%;
-    position: absolute;
-    z-index: 999;
 flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
