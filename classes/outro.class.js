@@ -31,6 +31,7 @@ world;
         clearInterval(interval);
         document.getElementById('startScreen').classList.add('d-flex');
         document.getElementById('startScreen').classList.remove('d-none');
+        document.getElementById('canvas').classList.add('d-none');
         document.getElementById('startBtn').classList.add('d-none');
         document.getElementById('reloadBtn').classList.remove('d-none');
         

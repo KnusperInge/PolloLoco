@@ -14,13 +14,23 @@ class MovableObjekt extends DrawableObject {
             }
         }, 1000 / 25);
     }
-
+/*
     isAboveGround() {
         if (this instanceof throwableObject) {
             return true;
         } else {
             return this.position_Y < this.groundPosY;
         }
+}
+*/
+    isAboveGround() {
+            if(this instanceof throwableObject){
+                return this.position_Y<=393;
+            }else{
+                return this.position_Y < this.groundPosY;
+            }
+           
+        
 }
 
     moveRight() {

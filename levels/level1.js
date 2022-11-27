@@ -59,11 +59,16 @@ const level1 = new Level(
 ],
 
 [
+    new bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png',150,370),
     new bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png',350,370),
     new bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png',650,370),
     new bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png',800,370),
     new bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png',1050,370),
     new bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png',1450,370),
+    new bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png',1550,370),
+    new bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png',1700,370),
+    new bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png',2050,370),
+    new bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png',2850,370),
     
 ]
 

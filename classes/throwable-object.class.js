@@ -1,5 +1,8 @@
 class throwableObject extends MovableObjekt{
     rotatingBottle;
+    splashing=false;
+    groundPosY=350;
+    
 IMAGE_ROTATION=[
 'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
 'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -34,16 +37,27 @@ IMAGE_SPLASH=[
         this.applyGravity();
        this.rotatingBottle= setInterval(()=>{
             this.position_X+=30;
-           this.playAnimation(this.IMAGE_ROTATION);
+          
+            this.playAnimation(this.IMAGE_ROTATION);
         },100 )
     }
    
     splash(){
+       let i=0;
         setInterval(()=>{
             this.playAnimation(this.IMAGE_SPLASH);
             clearInterval(this.rotatingBottle);
            
+            i++;
+      if(i>this.IMAGE_SPLASH.length/2){
+        
+        this.moveDown();
+        i=0;
+      }
            
         },100);
+       
     }
+
+
 }

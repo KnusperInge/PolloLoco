@@ -2,11 +2,11 @@ class Endboss extends MovableObjekt {
     height = 500;
     width = 300;
     position_Y = -50;
-    damage = 25;
+    damage = 10;
     firstContact = false;
     world;
     loop=0;
-
+health=100;
     IMAGES_INTRO = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -69,9 +69,9 @@ class Endboss extends MovableObjekt {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
             }
+            
             if(this.world.character.position_X>2800 && !this.firstContact){
                 i=0;
-                console.log('hallo', i);
                this.firstContact=true;
                this.speed=10;
             } 
@@ -79,7 +79,7 @@ class Endboss extends MovableObjekt {
             
            if(this.loop==24){
             clearInterval(this.stopIntervals());
-            document.getElementById('startScreen').classList.add('d-flex');
+           location.reload();
            
            }
 

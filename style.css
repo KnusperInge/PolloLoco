@@ -1,90 +1,117 @@
-@keyframes icon_rotation{
-    from{rotate: 0deg;}
-    to{rotate: 360deg;}    
+@keyframes icon_rotation {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
 }
 
-@keyframes falldown{
-    0%{
+@keyframes falldown {
+    0% {
         rotate: 45deg;
-        top:0;
+        margin-bottom: 80%;
     }
-    25%{
-        top:70%;
-        rotate:45deg;
+
+    25% {
+        margin-bottom: 10%;
+        rotate: 45deg;
     }
-    50%{
-        top: 50%;
+
+    50% {
+        margin-bottom: 25%;
         rotate: 35deg;
     }
- 
-    100%{
-        top:70%;
+
+    100% {
+        margin-bottom: 10%;
         rotate: 0deg;
     }
 }
 
 @font-face {
-    font-family:'zabras';
+    font-family: 'zabras';
     src: url('fonts/ZABARS/Zabars.ttf') format('truetype');
 }
 
-@media only screen and (max-width:720px){
-    .display{
-width: 97% !important;
+@media only screen and (max-width:720px) {
+    .display {
+        width: 97% !important;
 
 
     }
-    
-    .startscreen{
+
+    .startscreen {
         width: 100% !important;
-       
+
     }
+
     canvas {
         width: 100%;
 
     }
+    .MobileInfoTag{
+        display: flex !important;
+    }
+    .startBtn{
+        display: none!important;
+    }
 }
+
 /*---- Mobile Querformat--- */
-@media only screen and (max-height:580px){
+@media only screen and (max-height:580px) {
     canvas {
         height: 97vh !important;
-     padding-top: 5%;
-    }
-    h1{
-        display: none;
-    }
-    .control{
-        position: absolute;
-      display: flex!important;
-        bottom:0px;
-        
+        padding-top: 5%;
     }
 
-    .startscreen{
+    h1 {
+        display: none;
+    }
+
+    .control {
+        position: absolute;
+        display: flex !important;
+        bottom: 0px;
+
+    }
+
+    .startscreen {
         height: 100% !important;
         width: 100vw !important;
         background-size: 100% 100% !important;
-        border-radius:0 !important;
+        border-radius: 0 !important;
         padding-top: 5px !important;
-       
+
     }
-   #GameInfo{
-    width: 100% !important;
-    height: 100% !important;
-   }
-   .ctl-Desktop{
-    display: none !important;
-   }
-   .ctl-Mobile{
-    display: flex !important;
-    padding-top: 10px !important;
-   }
-   .Control-wrapper{
-    margin-top: 0 !important;
-   }
+
+    #GameInfo {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .ctl-Desktop {
+        display: none !important;
+    }
+
+    .ctl-Mobile {
+        display: flex !important;
+        padding-top: 10px !important;
+    }
+
+    .Control-wrapper {
+        margin-top: 0 !important;
+    }
+    .MobileInfoTag{
+        display: none !important;
+    }
+    .startBtn{
+        display: flex !important;
+    }
 }
 
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -93,36 +120,39 @@ body{
     background-size: cover;
     margin: 0;
     height: 100vh;
-  
+
 }
-h1{
+
+h1 {
     font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 2px 4px 8px rgba(252, 0, 0, 0.596);
-   padding-top: 100px;
+    padding-top: 100px;
     margin: 0;
     color: aliceblue;
-    font-family:'zabras',Arial, Helvetica, sans-serif;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
 }
-.display{
-margin-top: 2%;
+
+.display {
+    margin-top: 2%;
     height: 100%;
-   width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:flex-start;
-    
-}
-canvas{
-  display: block;
-    border: 4px solid rgb(5, 0, 46);
-  border-radius: 10px;
-    background-color: rgb(37, 36, 35);
-    
+    justify-content: flex-start;
+
 }
 
-.control img{
+canvas {
+    display: block;
+    border: 4px solid rgb(5, 0, 46);
+    border-radius: 10px;
+    background-color: rgb(37, 36, 35);
+
+}
+
+.control img {
     width: 60px;
     margin-left: 10px;
     margin-right: 15px;
@@ -130,41 +160,47 @@ canvas{
     margin-bottom: 10px;
     opacity: 0.7;
 }
-.control{
-   width: 98%;
-   display: none;
-  
+
+.control {
+    width: 98%;
+    display: none;
+
 }
-.control-left{
+
+.control-left {
     display: flex;
-width: 100%;
-  
+    width: 100%;
+
 }
-.control-right{
+
+.control-right {
     display: flex;
     justify-content: end;
     width: 100%;
-    
+
 }
-.info-btn{
- width: 100%;
+
+.info-btn {
+    width: 100%;
     text-align: end;
-    
-}
-
-.info-btn img{
-width: 50px;
-margin-right:5px;
-margin-top: 5px;
 
 }
-.info-btn img:hover{
+
+.info-btn img {
+    width: 50px;
+    margin-right: 5px;
+    margin-top: 5px;
+
+}
+
+.info-btn img:hover {
     cursor: pointer;
 }
-#InfoFrame{
-  z-index: 999;
+
+#InfoFrame {
+    z-index: 999;
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -172,32 +208,38 @@ margin-top: 5px;
     justify-content: center;
     align-items: center;
 }
-#GameInfo{
+
+#GameInfo {
     background-color: rgb(255, 248, 224);
     width: 40%;
     height: 50%;
     border-radius: 20px;
 }
-.ctl-Desktop{
+
+.ctl-Desktop {
     display: flex;
     justify-content: space-around;
     align-items: center;
 
 }
-.ctl-Mobile{
+
+.ctl-Mobile {
     display: none;
     justify-content: space-around;
     align-items: center;
 }
-.Control-wrapper{
+
+.Control-wrapper {
     margin-top: 10%;
-    
+
 }
-.ctl-Desktop img, .ctl-Mobile img{
+
+.ctl-Desktop img,
+.ctl-Mobile img {
     width: 50px;
 }
 
-.btn{
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,77 +247,93 @@ margin-top: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.btn span{
+
+.btn span {
     padding-top: 10px;
 }
 
-.ctl-Mobile{
-  padding-top: 50px;
+.ctl-Mobile {
+    padding-top: 50px;
 }
 
-.margin-left-right, h4, h3{
-    margin-left:10px ;
+.margin-left-right,
+h4,
+h3 {
+    margin-left: 10px;
     margin-right: 10px;
 }
 
-.info-head{
+.info-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    
-}
 
-.info-head img{
-width: 40px;
-height: 40px;
-margin-right: 10px;
-cursor: pointer;
 
 }
 
-.info-head img:hover, .info-btn img:hover{
+.info-head img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+.info-head img:hover,
+.info-btn img:hover {
     animation-name: icon_rotation;
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
-.d-none{
-    display:none;
+
+.d-none {
+    display: none !important;
 }
 
-.d-flex{
+.d-flex {
     display: flex;
 }
 
-.startscreen{
-   height: 480px;
-   width:720px;
-flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background-image: url("img/9_intro_outro_screens/start/startscreen_1.png");
- background-size:720px 480px;
- background-repeat: no-repeat;
- border-radius: 5px;
+.startscreen {
+    height: 480px;
+    width: 720px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-image: url("img/9_intro_outro_screens/start/startscreen_1.png");
+    background-size: 720px 480px;
+    background-repeat: no-repeat;
+    border-radius: 5px;
 
 }
-.startBtn{
-    height: 100px;
+
+.startBtn {
+    height: 100%;
     width: 100%;
-    text-align: center;
- 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
-.reloadBtn{
-   position: absolute;
-  top:70%;
-    height: 100px;
+
+.reloadBtn {
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
     width: 100%;
-    text-align: center;
+
+}
+
+.Button_Reload {
+    margin-bottom: 10%;
     rotate: 0deg;
     animation-name: falldown;
     animation-duration: 1.5s;
 }
-.Button{
+
+.Button,
+.Button_Reload{
     font-size: 40px;
     font-weight: 700;
     background-color: goldenrod;
@@ -283,15 +341,27 @@ flex-direction: column;
     padding-right: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
-  box-shadow: 2px 3px 5px rgba(151, 151, 151, 0.767);
+    box-shadow: 2px 3px 5px rgba(151, 151, 151, 0.767);
     border: 1px solid rgb(122, 122, 122);
     border-radius: 10px;
     margin-top: 10%;
 }
 
-.Button:hover{
-    
+.Button:hover,
+.Button_Reload:hover {
+
     background-color: rgb(175, 120, 2);
     color: rgb(255, 189, 66);
     cursor: pointer;
+}
+
+.MobileInfoTag{
+width: 100%;
+height: 100%;
+display: none;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+font-weight: 700;
+background-color: rgba(218, 165, 32, 0.534);
 }

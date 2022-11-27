@@ -1,12 +1,13 @@
 class World {
 
-    character = new Charakter();
+    
     outro = new Outro(0);
-    endBoss;
-    healthBar = new Healthbar(20, 0);
+     healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
     bottleBar = new bottleBar();
     finalBossHealthbar = new Healthbar(550, 0);
+    EndBoss= new Endboss();
+    character = new Charakter();
     throwableObjects = [];
     level = level1;
     ctx;
@@ -15,25 +16,23 @@ class World {
     camera_X = 0;
     dead = false;
     gameStatus=false;
-    constructor(canvas, keyboard) {
 
+    constructor(canvas, keyboard) {
+        
+        this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.setWorld();
-        this.run();
-       this.log();
+         this.run();  
+        
     }
-log(){
-    console.log(this.level.enemies.length);
-}
-   
+  
 
     setWorld() {
-      this.endBoss = this.level.enemies[10];
-        this.character.world = this;
-        this.endBoss.world = this;
+        
+      this.character.world = this;
+       this.EndBoss.world = this;
         this.outro.world = this;
 
 
@@ -43,6 +42,7 @@ log(){
         setInterval(() => {
             this.collBottle();
             this.collEnemy();
+           this.collFinalBoss();
             this.collCoin();
             this.checkThrowableObjects();
             this.checkWin();
@@ -65,7 +65,7 @@ log(){
     }
 
 checkWin(){
-    if(this.endBoss.isDead()){
+    if(this.EndBoss.isDead()){
         this.gameStatus=true;
      }
 }
@@ -79,12 +79,28 @@ checkWin(){
         }
     }
 
+    hitGround(bottle){
+        if(!bottle.isAboveGround()){
+            bottle.splash();
+            }
+    }
+    
+    hitBoss(bottle){
+        if(bottle.isColliding(this.EndBoss)){
+            bottle.splash();
+            
+            this.EndBoss.hit(bottle.damage);
+            this.finalBossHealthbar.setPercentage(this.EndBoss.health);
+           
+        }
+    }
+
     hitChickens(bottle) {
         return this.level.enemies.forEach((enemy) => {
             if (bottle.isColliding(enemy)) {
                 bottle.splash();
                 enemy.hit(bottle.damage);
-                this.finalBossHealthbar.setPercentage(enemy.health);
+               // 
             } else {
                 return true
             }
@@ -107,7 +123,17 @@ checkWin(){
             }
         })
     }
+collFinalBoss(){
+    if(this.dead){
+        this.letitDie(this.EndBoss);
+    }else if(this.character.isColliding(this.EndBoss)){
+        this.EndBoss.hit(this.character.damage);
+        this.character.hit(this.EndBoss.damage);
+        this.healthBar.setPercentage(this.character.health);
+        this.finalBossHealthbar.setPercentage(this.EndBoss.health);
 
+    }
+}
 
     // Char is collecting Coins
     collCoin() {
@@ -141,8 +167,9 @@ checkWin(){
             setInterval(() => {
                 //Check Bottlecollison with Enemys 
                 this.hitChickens(bottle);
-
-            }, 1000 / 60);
+                this.hitBoss(bottle);
+                this.hitGround(bottle);
+            }, 100);
 
             this.bottleBar.setPercentage(this.character.collectedBottles, this.level.bottle.length);
         }
@@ -174,8 +201,10 @@ checkWin(){
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addToMap(this.character);
+        this.addToMap(this.EndBoss);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
+     
         this.ctx.translate(-this.camera_X, 0);
 
         //draw() wird immer wieder aufgerufen

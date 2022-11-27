@@ -61,6 +61,7 @@ class Charakter extends MovableObjekt {
         this.jumpheight = 30;
         this.damage = 10;
         this.health=100;
+   
     }
 
     animate() {
