@@ -34,6 +34,11 @@
     font-family: 'zabras';
     src: url('fonts/ZABARS/Zabars.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Mali_Reg';
+    src: url('fonts/Mali/Mali-Regular.ttf') format('truetype');
+}
+
 
 @media only screen and (max-width:720px) {
     .display {
@@ -44,12 +49,13 @@
 
     .startscreen {
         width: 100% !important;
+       
 
     }
 
     canvas {
         width: 100%;
-
+        
     }
     .MobileInfoTag{
         display: flex !important;
@@ -62,8 +68,8 @@
 /*---- Mobile Querformat--- */
 @media only screen and (max-height:580px) {
     canvas {
-        height: 97vh !important;
-        padding-top: 5%;
+        height: 100%!important;
+       
     }
 
     h1 {
@@ -75,6 +81,10 @@
         display: flex !important;
         bottom: 0px;
 
+    }
+    .display{
+        margin:0 !important;
+        height: 100% !important;
     }
 
     .startscreen {
@@ -181,7 +191,9 @@ canvas {
 }
 
 .info-btn {
-    width: 100%;
+  
+  
+   width: 99%;
     text-align: end;
 
 }
@@ -214,6 +226,7 @@ canvas {
     width: 40%;
     height: 50%;
     border-radius: 20px;
+    font-family: 'Mali_Reg', Arial, Helvetica, sans-serif;
 }
 
 .ctl-Desktop {
@@ -313,6 +326,8 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    font-family: 'Mali_Reg', Arial, Helvetica, sans-serif;
+    
 }
 
 .reloadBtn {
@@ -336,7 +351,7 @@ h3 {
 .Button_Reload{
     font-size: 40px;
     font-weight: 700;
-    background-color: goldenrod;
+    background-color: rgba(218, 165, 32, 0.877);
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 2px;

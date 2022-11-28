@@ -16,6 +16,7 @@ class World {
     camera_X = 0;
     dead = false;
     gameStatus=false;
+    
 
     constructor(canvas, keyboard) {
         
@@ -44,12 +45,19 @@ class World {
             this.collEnemy();
            this.collFinalBoss();
             this.collCoin();
-            this.checkThrowableObjects();
-            this.checkWin();
+         this. checkThrowableObjects()
+           this.checkWin();
             this.checkDead();
-        }, 60);
+        },100);
     }
 
+    throwABottle(bottle){
+        bottle.throw(); // werfen
+        this.throwableObjects.push(bottle);
+    this.character.collectedBottles -= 1;
+    console.log('werfen',new Date());
+       }
+        
     //Char is Dead
     letitDie(enemy) {
         this.character.stopIntervals();
@@ -146,6 +154,7 @@ collFinalBoss(){
         })
     }
 
+
     // Char is collecting Bottles
     collBottle() {
         this.level.bottle.forEach((bottle) => {
@@ -158,13 +167,14 @@ collFinalBoss(){
     }
 
     checkThrowableObjects() {
+    
         if (this.keyboard.F && this.character.collectedBottles > 0) {
-            let bottle = new throwableObject(this.character.position_X + 100, this.character.position_Y + 100);
-            bottle.throw(); // werfen
-            this.throwableObjects.push(bottle);
-            this.character.collectedBottles -= 1;
-
-            setInterval(() => {
+           
+          let bottle  = new throwableObject(this.character.position_X + 100, this.character.position_Y + 100);
+  this.throwABottle(bottle);
+          
+           
+           setInterval(() => {
                 //Check Bottlecollison with Enemys 
                 this.hitChickens(bottle);
                 this.hitBoss(bottle);
@@ -191,7 +201,7 @@ collFinalBoss(){
         this.addToMap(this.bottleBar);
 
         // Add Finalboss Healthbar
-        if (this.character.position_X >= 2900) {
+        if (this.EndBoss.firstContact) {
             this.addToMap(this.finalBossHealthbar);
         }
         if (this.dead) {

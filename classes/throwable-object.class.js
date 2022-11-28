@@ -37,7 +37,6 @@ IMAGE_SPLASH=[
         this.applyGravity();
        this.rotatingBottle= setInterval(()=>{
             this.position_X+=30;
-          
             this.playAnimation(this.IMAGE_ROTATION);
         },100 )
     }
