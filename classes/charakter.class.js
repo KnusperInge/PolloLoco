@@ -4,7 +4,7 @@ class Charakter extends MovableObjekt {
     speed = 5;
     position_Y = 80;
     world;
- groundPosY = 180;
+    groundPosY = 180;
     offSet = {
         Left: 20,
         Right: 20,
@@ -60,9 +60,8 @@ class Charakter extends MovableObjekt {
         this.applyGravity();
         this.jumpheight = 30;
         this.damage = 10;
-        this.health=100;
-   
-    }
+        this.health = 100;
+      }
 
     animate() {
         this.setStoppableIntervals(() => this.moveChar(), 1000 / 60);
@@ -71,7 +70,7 @@ class Charakter extends MovableObjekt {
 
     moveChar() {
         //rechts laufen
-        if (this.world.keyboard.RIGHT && this.position_X < this.world.level.levelEnd_X) {
+        if (this.world.keyboard.RIGHT && this.position_X < this.levelEndX) {
             this.moveRight();
             this.ohterDirection = false;
         }
@@ -106,6 +105,4 @@ class Charakter extends MovableObjekt {
             }
         }
     }
-
-
 }

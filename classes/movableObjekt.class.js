@@ -6,6 +6,11 @@ class MovableObjekt extends DrawableObject {
     lastHit = 0;
     jumpheight = 0;
 
+
+    constructor(){
+        super();
+       }
+       
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -14,24 +19,14 @@ class MovableObjekt extends DrawableObject {
             }
         }, 1000 / 25);
     }
-/*
+
     isAboveGround() {
         if (this instanceof throwableObject) {
-            return true;
+            return this.position_Y <= 393;
         } else {
             return this.position_Y < this.groundPosY;
         }
-}
-*/
-    isAboveGround() {
-            if(this instanceof throwableObject){
-                return this.position_Y<=393;
-            }else{
-                return this.position_Y < this.groundPosY;
-            }
-           
-        
-}
+    }
 
     moveRight() {
         this.position_X += this.speed;

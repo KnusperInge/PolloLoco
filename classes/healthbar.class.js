@@ -15,10 +15,8 @@ image;
     constructor(x,y) {
         super();
         this.loadImages(this.IMAGES_HEALTHBAR);
-       
-        this.setPercentage(100);
-
-       this.position_X=x;
+       this.setPercentage(100);
+ this.position_X=x;
         this.position_Y=y;
         this.width=150;
         this.height=50;
@@ -40,7 +38,7 @@ image;
             return 3;
         } else if (this.percentage > 40) {
             return 2;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage > 10) {
             return 1;
         } else {
             return 0;

@@ -11,7 +11,9 @@ class DrawableObject {
     collectedBottles = 0;
     loadedBottles = 0;
     damage = 0;
-
+ bg_width=719; //Canvas width -1
+    bg_length=4; // 0+4 Images (level length)
+    levelEndX= this.bg_width*this.bg_length+95; // 
     intervalIDs=[];
 
 offSet={
