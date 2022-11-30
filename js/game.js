@@ -3,16 +3,6 @@ let world;
 let keyboard = new Keyboard();
 let fullscreen = false;
 
-function openGameInfo() {
-  document.getElementById('InfoFrame').classList.remove('d-none');
-  document.getElementById('InfoFrame').classList.add('d-flex');
-}
-
-function closeGameInfo() {
-  document.getElementById('InfoFrame').classList.remove('d-flex');
-  document.getElementById('InfoFrame').classList.add('d-none');
-}
-
 function start() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('startScreen').classList.remove('d-flex');
@@ -22,7 +12,7 @@ function start() {
 
 function reload() {
   location.reload();
-  start();
+
 }
 function init() {
   canvas = document.getElementById('canvas');
@@ -41,6 +31,7 @@ function fullscreenModus() {
 
 function enterFullscreen(element) {
   fullscreen = true;
+  addProperties();
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
@@ -52,6 +43,7 @@ function enterFullscreen(element) {
 
 function exitFullscreen() {
   fullscreen = false;
+  removeProperties();
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
@@ -59,3 +51,24 @@ function exitFullscreen() {
   }
 }
 
+function addProperties() {
+  document.getElementById('display').classList.add('fullscreen');
+  document.getElementById('startScreen').classList.add('fullscreen');
+  document.getElementById('canvas').classList.add('fullscreen');
+  document.getElementById('info-btn').classList.add('fullwidth');
+}
+function removeProperties() {
+  document.getElementById('display').classList.remove('fullscreen');
+  document.getElementById('startScreen').classList.remove('fullscreen');
+  document.getElementById('canvas').classList.remove('fullscreen');
+  document.getElementById('info-btn').classList.remove('fullwidth');
+}
+function openGameInfo() {
+  document.getElementById('InfoFrame').classList.remove('d-none');
+  document.getElementById('InfoFrame').classList.add('d-flex');
+}
+
+function closeGameInfo() {
+  document.getElementById('InfoFrame').classList.remove('d-flex');
+  document.getElementById('InfoFrame').classList.add('d-none');
+}

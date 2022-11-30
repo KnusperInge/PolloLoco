@@ -30,7 +30,18 @@ class throwableObject extends MovableObjekt {
         this.damage = 5;
     }
 
-    throw() {
+    throwLeft(a) {
+        this.position_X = a;
+        this.speedY = 30;
+        this.applyGravity();
+        this.rotatingBottle = setInterval(() => {
+            this.position_X -= 30;
+            this.playAnimation(this.IMAGE_ROTATION);
+        }, 100)
+    }
+
+    throwRight() {
+        console.log(this.position_X);
         this.speedY = 30;
         this.applyGravity();
         this.rotatingBottle = setInterval(() => {

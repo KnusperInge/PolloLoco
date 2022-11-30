@@ -5,7 +5,7 @@ class World {
     healthBar = new Healthbar(20, 0);
     coinsBar = new CoinsBar();
     bottleBar = new bottleBar(this.level.bottle.length);
-    finalBossHealthbar = new Healthbar(550, 0);
+    finalBossHealthbar = new Healthbar(550, 35);
     EndBoss = new Endboss();
     character = new Charakter();
     throwableObjects = [];
@@ -31,38 +31,49 @@ class World {
         this.EndBoss.world = this;
         this.outro.world = this;
     }
-
     draw() {
         //Canvas leeren
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_X, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
+        this.setLayerElements();
         this.ctx.translate(-this.camera_X, 0);
         //--------- Space for Fixed Elements--------------//
-        this.addToMap(this.healthBar);
-        this.addToMap(this.coinsBar);
-        this.addToMap(this.bottleBar);
-        // Add Finalboss Healthbar
-        if (this.EndBoss.firstContact) {
-            this.addToMap(this.finalBossHealthbar);
-        }
-        if (this.dead) {
-            this.addToMap(this.outro);
-        }
+        this.setFixedElements();
         this.ctx.translate(this.camera_X, 0);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.bottle);
-        this.addToMap(this.character);
-        this.addToMap(this.EndBoss);
-        this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.enemies);
+        this.setPlayableandCollectableElements();
         this.ctx.translate(-this.camera_X, 0);
         //draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    setLayerElements() {
+        this.addObjectsToMap(this.level.backgroundObjects)
+        this.addObjectsToMap(this.level.clouds)
+    }
+    setFixedElements() {
+        this.addToMap(this.healthBar)
+        this.addToMap(this.coinsBar)
+        this.addToMap(this.bottleBar)
+        this.setFinalBossHealthbar();
+    }
+    setFinalBossHealthbar() {
+        if (this.EndBoss.firstContact) {
+            this.addToMap(this.finalBossHealthbar);
+        }
+        if (this.dead) {
+            this.addToMap(this.outro);
+        }
+    }
+    setPlayableandCollectableElements() {
+        this.addObjectsToMap(this.level.coins)
+        this.addObjectsToMap(this.level.bottle)
+        this.addToMap(this.character);
+        this.addToMap(this.EndBoss);
+        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.enemies);
     }
 
     addObjectsToMap(objects) {
@@ -95,8 +106,8 @@ class World {
     }
 
     run() {
-        setInterval(() => this.checkCollisons(), 1000 / 60);
-        setInterval(() => this.checkThrowableObjects(), 250);
+        setInterval(() => this.checkCollisons(), 100);
+        setInterval(() => this.checkThrowableObjects(), 200);
     }
 
     checkCollisons() {
@@ -155,6 +166,7 @@ class World {
                 this.character.collectCoin();
                 coin.delete();
                 this.coinsBar.setPercentage(this.character.coins);
+
             }
         })
     }
@@ -202,7 +214,13 @@ class World {
     }
 
     throwABottle(bottle) {
-        bottle.throw(); // werfen
+        if (this.character.ohterDirection) {
+            let correction = this.character.position_X - 25;
+            bottle.throwLeft(correction);
+        } else if (!this.character.ohterDirection) {
+            bottle.throwRight(); // werfen
+        }
+
         this.throwableObjects.push(bottle);
         this.character.collectedBottles -= 1;
     }

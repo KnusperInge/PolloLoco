@@ -6,11 +6,10 @@ class MovableObjekt extends DrawableObject {
     lastHit = 0;
     jumpheight = 0;
 
-
-    constructor(){
+    constructor() {
         super();
-       }
-       
+    }
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -25,6 +24,7 @@ class MovableObjekt extends DrawableObject {
             return this.position_Y <= 393;
         } else {
             return this.position_Y < this.groundPosY;
+
         }
     }
 
@@ -36,7 +36,6 @@ class MovableObjekt extends DrawableObject {
         this.position_X -= this.speed;
     }
     moveDown() {
-
         this.position_Y = 500;
     }
 

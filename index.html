@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
     <script src="classes/drawable-object.class.js"></script>
     <script src="classes/movableObjekt.class.js"></script>
-   <script src="classes/chicken.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
     <script src="classes/chicken_small.class.js"></script>
     <script src="classes/endboss.class.js"></script>
     <script src="classes/cloud.class.js"></script>
@@ -27,34 +27,34 @@
     <script src="classes/throwable-object.class.js"></script>
 
     <script src="levels/level1.js"></script>
-    
+
     <title>El Pollo Loco</title>
 </head>
 
 <body>
-   
+  
     <h1> El Pollo Loco</h1>
     <div id="display" class="display">
-        
+        <div id="info-btn" class="info-btn">
+            <img src="img/icons/sound.png" alt=""" onclick="">
+            <img class="rotation" src="img/icons/fullscreen.png" alt="" onclick="fullscreenModus()">
+            <img class="rotation"src="img/icons/info.png" alt="" onclick="openGameInfo()">
+        </div>
         <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
-     <div id="startScreen" class="startscreen d-flex">
-        <div class="info-btn">
-            <img  src="img/fullscreen.png" alt="" onclick="fullscreenModus()">
-            <img src="img/control/info.png" alt="" onclick="openGameInfo()">
-            
+        <div id="startScreen" class="startscreen d-flex">
+          
+            <div id="startBtn" class="startBtn">
+                <span onclick="start()" class="Button">Start</span>
+            </div>
+            <div id="" class="MobileInfoTag">
+                <span>Please Rotate your Mobile Device in landscape format</span>
+            </div>
+            <div id="reloadBtn" class="reloadBtn d-none">
+                <span onclick="reload()" class="Button_Reload">Try Again ?</span>
+            </div>
+
         </div>
-        <div  id ="startBtn" class="startBtn">
-            <span onclick="start()"class="Button">Start</span>
-        </div>
-        <div  id ="" class="MobileInfoTag">
-            <span>Please Rotate your Mobile Device in landscape format</span>
-        </div>
-        <div  id ="reloadBtn" class="reloadBtn d-none">
-            <span onclick="reload()"class="Button_Reload">Try Again ?</span>
-        </div>
-       
-     </div>
-        
+
         <div class="control">
             <div class="control-left">
                 <img id="btn_Left" src="img/control/left.png" alt="">
@@ -70,23 +70,24 @@
     <div id="InfoFrame" class="d-none">
         <div id="GameInfo">
             <div>
-               <div class=" info-head">
-                <h3>Was ist zu tun ? </h3>
-                <img onclick="closeGameInfo()" id="close-btn" src="img/close.png" alt="">
-               </div>
-               
-               <div class="margin-left-right">
-                <span> 
-                    Ziel des Spiel ist es den Endboss zu besiegen, <br>auf dem Weg dahin möglichst viele Münzen und Salsaflaschen zu sammeln.<br> Sowie wie alle Gegner zu töten oder diesen geschickt auszuweichen.
-                </span>
-               </div>
-                
+                <div class=" info-head">
+                    <h3>Was ist zu tun ? </h3>
+                    <img class="rotation" onclick="closeGameInfo()" id="close-btn" src="img/icons/close.png" alt="">
+                </div>
+
+                <div class="margin-left-right">
+                    <span>
+                        Ziel des Spiel ist es den Endboss zu besiegen, <br>auf dem Weg dahin möglichst viele Münzen und
+                        Salsaflaschen zu sammeln.<br> Sowie wie alle Gegner zu töten oder diesen geschickt auszuweichen.
+                    </span>
+                </div>
+
             </div>
-           
+
             <div class="Control-wrapper">
                 <h3> Steuerung:</h3>
-                 <div class="ctl-Desktop margin-left-right">
-                    
+                <div class="ctl-Desktop margin-left-right">
+
                     <div class="btn">
                         <div>
                             <img src="img/control/left-arrow-variant-key-on-keyboard.png" alt="">
@@ -107,10 +108,10 @@
                     </div>
                 </div>
 
-               
+
 
                 <div class="ctl-Mobile">
-                    
+
                     <div class="btn">
                         <div>
                             <img src="img/control/left.png" alt="">
@@ -130,7 +131,7 @@
                         <span> Throw</span>
                     </div>
                 </div>
-           
+
             </div>
         </div>
     </div>

@@ -34,6 +34,7 @@
     font-family: 'zabras';
     src: url('fonts/ZABARS/Zabars.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Mali_Reg';
     src: url('fonts/Mali/Mali-Regular.ttf') format('truetype');
@@ -43,33 +44,36 @@
 @media only screen and (max-width:720px) {
     .display {
         width: 97% !important;
+    }
 
-
+    .info-btn {
+        display: none;
+        width: 92% !important;
     }
 
     .startscreen {
         width: 100% !important;
-       
-
     }
 
     canvas {
         width: 100%;
-        
+
     }
-    .MobileInfoTag{
+
+    .MobileInfoTag {
         display: flex !important;
     }
-    .startBtn{
-        display: none!important;
+
+    .startBtn {
+        display: none !important;
     }
 }
 
 /*---- Mobile Querformat--- */
 @media only screen and (max-height:580px) {
     canvas {
-        height: 100%!important;
-       
+        height: 100% !important;
+
     }
 
     h1 {
@@ -82,9 +86,15 @@
         bottom: 0px;
 
     }
-    .display{
-        margin:0 !important;
+
+    .display {
+        margin: 0 !important;
         height: 100% !important;
+    }
+
+    .info-btn {
+        width: 99% !important;
+        opacity: 0.5;
     }
 
     .startscreen {
@@ -113,10 +123,12 @@
     .Control-wrapper {
         margin-top: 0 !important;
     }
-    .MobileInfoTag{
+
+    .MobileInfoTag {
         display: none !important;
     }
-    .startBtn{
+
+    .startBtn {
         display: flex !important;
     }
 }
@@ -126,7 +138,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    background-image: url('img/dessert_bg.jpg');
+    background-image: url('img/icons/dessert_bg.jpg');
     background-size: cover;
     margin: 0;
     height: 100vh;
@@ -151,6 +163,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
 
 }
 
@@ -180,29 +193,26 @@ canvas {
 .control-left {
     display: flex;
     width: 100%;
-
 }
 
 .control-right {
     display: flex;
     justify-content: end;
     width: 100%;
-
 }
 
 .info-btn {
-  
-  
-   width: 99%;
+    position: absolute;
+    z-index: 999;
+    width: 720px;
     text-align: end;
-
 }
 
 .info-btn img {
     width: 50px;
     margin-right: 5px;
     margin-top: 5px;
-
+    opacity: 0.8;
 }
 
 .info-btn img:hover {
@@ -280,8 +290,6 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
 }
 
 .info-head img {
@@ -289,11 +297,9 @@ h3 {
     height: 40px;
     margin-right: 10px;
     cursor: pointer;
-
 }
 
-.info-head img:hover,
-.info-btn img:hover {
+.rotation:hover{
     animation-name: icon_rotation;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -317,7 +323,6 @@ h3 {
     background-size: 720px 480px;
     background-repeat: no-repeat;
     border-radius: 5px;
-
 }
 
 .startBtn {
@@ -326,18 +331,16 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    font-family: 'Mali_Reg', Arial, Helvetica, sans-serif;
-    
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
 }
 
 .reloadBtn {
-
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     height: 100%;
     width: 100%;
-
 }
 
 .Button_Reload {
@@ -348,7 +351,7 @@ h3 {
 }
 
 .Button,
-.Button_Reload{
+.Button_Reload {
     font-size: 40px;
     font-weight: 700;
     background-color: rgba(218, 165, 32, 0.877);
@@ -364,19 +367,29 @@ h3 {
 
 .Button:hover,
 .Button_Reload:hover {
-
     background-color: rgb(175, 120, 2);
     color: rgb(255, 189, 66);
     cursor: pointer;
 }
 
-.MobileInfoTag{
-width: 100%;
-height: 100%;
-display: none;
-justify-content: center;
-align-items: center;
-font-size: 20px;
-font-weight: 700;
-background-color: rgba(218, 165, 32, 0.534);
+.MobileInfoTag {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: rgba(218, 165, 32, 0.534);
+}
+
+.fullscreen {
+    height: 100%;
+    width: 100%;
+    background-size: contain !important;
+}
+
+.fullwidth {
+    width: 99%;
+    opacity: 0.5;
 }

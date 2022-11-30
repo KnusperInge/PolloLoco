@@ -1,12 +1,12 @@
 class Endboss extends MovableObjekt {
-    height = 500;
+    height = 450;
     width = 300;
-    position_Y = -50;
+    position_Y = 10;
     damage = 10;
     firstContact = false;
     world;
-    loop=0;
-health=100;
+    loop = 0;
+    health = 100;
     IMAGES_INTRO = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -47,42 +47,36 @@ health=100;
         this.health = 100;
         this.position_X = 3280;
         this.animate();
-        this.speed=0;
-     
+        this.speed = 0;
+
     }
     animate() {
         let i = 0;
-       this.setStoppableIntervals(() => {
-          if(this.isDead()){
-            this.loop+=1;
-            console.log('endboss Loop', this.loop);
-          }
-      
-           if(i<10){
+        this.setStoppableIntervals(() => {
+            if (this.isDead()) {
+                this.loop += 1;
+            }
+            if (i < 10) {
                 this.playAnimation(this.IMAGES_INTRO);
-            }else if (this.isDead()) {
+            } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
             }
-            
-            if(this.world.character.position_X>2800 && !this.firstContact){
-                i=0;
-               this.firstContact=true;
-               this.speed=10;
-            } 
+            if (this.world.character.position_X > 2800 && !this.firstContact) {
+                i = 0;
+                this.firstContact = true;
+                this.speed = 10;
+            }
             i++;
-            
-           if(this.loop==24){
-            clearInterval(this.stopIntervals());
-           location.reload();
-           
-           }
-
+            if (this.loop == 24) {
+                clearInterval(this.stopIntervals());
+                location.reload();
+            }
         }, 200);
     }
 }
